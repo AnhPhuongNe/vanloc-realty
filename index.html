@@ -5,970 +5,173 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iHouzz Vạn Lộc Realty</title>
     <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Manrope -->
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Font Awesome cho Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Manrope', sans-serif !important;
-            background-color: #f8fafc;
-            color: #0f172a;
-            display: flex;
-            flex-direction: column;
-            min-h-screen: 100vh;
-        }
-        main {
-            flex: 1;
-        }
-        .soft-shadow {
-            box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.02), 0px 1px 3px rgba(0, 0, 0, 0.01);
-        }
-        .gradient-bg {
-            background: linear-gradient(90deg, #0056FF 0%, #37E1FF 100%);
-        }
-        .gradient-text {
-            background: linear-gradient(90deg, #0056FF 0%, #37E1FF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .text-highlight {
-            color: #FF8213 !important;
-        }
-        /* Custom scrollbar for premium look */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 3px;
+        /* Khai báo hệ màu xanh dương nhạt chủ đạo */
+        :root {
+            --color-primary: #3b82f6; /* Xanh dương nhạt / Sky Blue */
+            --color-primary-hover: #2563eb;
+            --color-primary-light: #eff6ff;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-950 antialiased">
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
 
-    <!-- HEADER NAVIGATION -->
-    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 soft-shadow">
-        <div class="max-w-[1200px] mx-auto px-6 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <button onclick="switchTab('home')" class="text-xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2 hover:opacity-80 transition">
-                <span class="gradient-text">iHouzz</span> Vạn Lộc Realty
-            </button>
+    <!-- NAVBAR (THANH ĐIỀU HƯỚNG) -->
+    <header class="sticky top-0 z-50 bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Vị trí Logo SVG cho Phương tự upload sau -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex items-center gap-2">
+                        <!-- Tạm thời để một Icon SVG mẫu, cháu có thể thay toàn bộ đoạn <svg> này bằng file của cháu -->
+                        <svg class="h-10 w-auto text-[var(--color-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9 22 9 12 15 12 15 22"/>
+                        </svg>
+                        <span class="font-bold text-xl tracking-tight text-gray-900">VẠN LỘC <span class="text-[var(--color-primary)]">REALTY</span></span>
+                    </a>
+                </div>
+                
+                <!-- Menu điều hướng chính -->
+                <nav class="hidden md:flex space-x-8 font-medium">
+                    <a href="#" class="text-[var(--color-primary)] border-b-2 border-[var(--color-primary)] px-1 pt-1 text-sm">Trang Chủ</a>
+                    <a href="#" class="text-gray-500 hover:text-[var(--color-primary)] px-1 pt-1 text-sm transition-colors">Dự Án</a>
+                    <a href="#" class="text-gray-500 hover:text-[var(--color-primary)] px-1 pt-1 text-sm transition-colors">Tin Tức</a>
+                    <a href="#" class="text-gray-500 hover:text-[var(--color-primary)] px-1 pt-1 text-sm transition-colors">Liên Hệ</a>
+                </nav>
 
-            <!-- Navigation Links -->
-            <nav class="hidden md:flex items-center gap-8 font-semibold text-sm text-slate-600">
-                <button onclick="switchTab('about')" id="nav-about" class="hover:text-blue-600 transition">Giới Thiệu</button>
-                <button onclick="switchTab('projects')" id="nav-projects" class="hover:text-blue-600 transition">Dự Án</button>
-                <button onclick="switchTab('services')" id="nav-services" class="hover:text-blue-600 transition">Dịch Vụ</button>
-                <button onclick="switchTab('news')" id="nav-news" class="hover:text-blue-600 transition">Tin Tức</button>
-                <button onclick="switchTab('careers')" id="nav-careers" class="hover:text-blue-600 transition">Tuyển Dụng</button>
-                <button onclick="switchTab('contact')" id="nav-contact" class="hover:text-blue-600 transition">Liên Hệ</button>
-            </nav>
-
-            <!-- Action Button -->
-            <button onclick="switchTab('contact')" class="gradient-bg text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-md hover:opacity-90 transition">
-                Liên hệ ngay
-            </button>
+                <!-- Nút Call to Action -->
+                <div class="hidden md:flex items-center">
+                    <a href="tel:0900000000" class="inline-flex items-center justify-center px-5 py-2.5 border border-transparent text-sm font-semibold rounded-lg text-white bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] shadow-sm transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-phone mr-2"></i> Hotline tư vấn
+                    </a>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- MAIN CONTAINER -->
-    <main class="max-w-[1200px] mx-auto px-6 py-12 w-full">
-
-        <!-- ========================================== -->
-        <!-- VIEW: TRANG CHỦ -->
-        <!-- ========================================== -->
-        <div id="tab-home" class="tab-content space-y-24 animate-fadeIn">
-            <!-- 1. Banner Tiêu Điểm -->
-            <section class="relative rounded-3xl overflow-hidden soft-shadow bg-slate-900 text-white min-h-[480px] flex items-center">
-                <!-- IMAGE HOLDER: HERO BANNER -->
-                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1920&q=80" alt="Hero Banner chờ thay ảnh" class="absolute inset-0 w-full h-full object-cover opacity-40">
-                <div class="relative z-10 max-w-2xl p-8 md:p-16 space-y-6">
-                    <span class="text-xs font-bold uppercase tracking-widest bg-white/20 px-3 py-1 rounded-full">Định vị thương hiệu</span>
-                    <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">iHouzz Vạn Lộc Realty – <span class="text-highlight">Tư vấn và môi giới bất động sản chuyên nghiệp</span>.</h1>
-                    <p class="text-slate-200 text-base md:text-lg">Cung cấp giải pháp toàn diện về bất động sản dòng tiền và căn hộ cao cấp tại khu vực trọng điểm.</p>
-                    <div class="flex flex-wrap gap-4 pt-2">
-                        <a href="https://zalo.me" target="_blank" class="gradient-bg text-white px-6 py-3 rounded-xl font-bold hover:opacity-90 transition text-sm">Kết nối tư vấn ngay qua Zalo</a>
-                        <button onclick="switchTab('projects')" class="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-xl font-bold border border-white/20 transition text-sm">Khám phá giỏ hàng đáng tin cậy</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Divider -->
-            <div class="w-full h-[1px]" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 97, 255, 0.15), rgba(0, 0, 0, 0));"></div>
-
-            <!-- 2. Khu vực Giới thiệu chung & Định vị -->
-            <section class="grid md:grid-cols-12 gap-8 items-center bg-white p-8 md:p-12 rounded-3xl soft-shadow">
-                <div class="md:col-span-5 space-y-3">
-                    <span class="text-xs font-bold uppercase text-blue-600 tracking-wider">Đơn vị tư vấn và môi giới uy tín</span>
-                    <h2 class="text-2xl md:text-3xl font-bold leading-tight">Đáp ứng mọi nhu cầu an cư và đầu tư bằng <span class="text-highlight">dịch vụ thực tế</span> và nhân lực chuyên nghiệp.</h2>
-                </div>
-                <div class="md:col-span-7 text-slate-600 text-base leading-relaxed">
-                    iHouzz Vạn Lộc Realty tọa lạc tại dự án Urban Green, TP. Thủ Đức. Chúng tôi là điểm đến tin cậy cho mọi giao dịch bất động sản, kết hợp giữa nguồn hàng được kiểm duyệt nghiêm ngặt và năng lực phục vụ trực tiếp, tận tâm tại văn phòng, giúp khách hàng an tâm tuyệt đối trong bối cảnh thị trường nhiều biến động và nhiễu loạn thông tin.
-                </div>
-            </section>
-
-            <!-- 3. Khối nội dung Về Chúng Tôi -->
-            <section class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <span class="text-xs font-bold uppercase text-blue-600 tracking-wider">Sử mệnh làm "Cầu nối tin cậy"</span>
-                    <h2 class="text-3xl font-bold">Pháp nhân vững vàng, <span class="text-highlight">dịch vụ tận tâm</span>.</h2>
-                    <p class="text-slate-600 leading-relaxed">Công ty Cổ phần Vạn Lộc Realty là đơn vị nhượng quyền chính thức của iHouzz. Chúng tôi không đơn thuần là một đơn vị môi giới — chúng tôi là kiến trúc sư của từng hành trình tài sản bền vững. Trong một thị trường bất động sản biến động và có nhiều nguồn thông tin không chính xác, thiếu minh bạch, chúng tôi cam kết bảo vệ giá trị thực cho khách hàng bằng nguồn hàng đáng tin cậy và đội ngũ nhân lực chuẩn mực.</p>
-                </div>
-                <!-- IMAGE HOLDER: OFFICE OR ABOUT IMAGE -->
-                <div class="rounded-3xl overflow-hidden soft-shadow h-80 bg-slate-200">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Hình ảnh văn phòng chờ thay thế" class="w-full h-full object-cover">
-                </div>
-            </section>
-
-            <!-- 4. Danh mục Dự án Tiêu biểu -->
-            <section class="space-y-8">
-                <div class="text-center max-w-2xl mx-auto space-y-3">
-                    <span class="text-xs font-bold uppercase text-blue-600 tracking-wider">Bảng hàng minh bạch</span>
-                    <h2 class="text-3xl font-bold">Kết nối hiệu quả, <span class="text-highlight">giao dịch an toàn</span>.</h2>
-                    <p class="text-slate-500 text-sm">Danh mục các phân khúc bất động sản mũi nhọn bao gồm: Bất động sản dự án, Nhà phố trung tâm và Bất động sản thương mại dòng tiền.</p>
-                </div>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <!-- Preview Card 1 (Clickable to Tab Projects) -->
-                    <div onclick="switchTab('projects')" class="bg-white rounded-2xl overflow-hidden soft-shadow cursor-pointer hover:-translate-y-1 transition group">
-                        <div class="h-48 bg-slate-200 overflow-hidden relative">
-                            <!-- IMAGE HOLDER: PROJECT 1 -->
-                            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80" alt="Dự án chờ thay ảnh" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        </div>
-                        <div class="p-6 space-y-2">
-                            <h3 class="font-bold text-lg group-hover:text-blue-600 transition">Urban Green Thủ Đức</h3>
-                            <p class="text-xs text-slate-500">Căn hộ cao cấp & Shophouse thương mại</p>
-                        </div>
-                    </div>
-                    <!-- Preview Card 2 -->
-                    <div onclick="switchTab('projects')" class="bg-white rounded-2xl overflow-hidden soft-shadow cursor-pointer hover:-translate-y-1 transition group">
-                        <div class="h-48 bg-slate-200 overflow-hidden relative">
-                            <!-- IMAGE HOLDER: PROJECT 2 -->
-                            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="Dự án chờ thay ảnh" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        </div>
-                        <div class="p-6 space-y-2">
-                            <h3 class="font-bold text-lg group-hover:text-blue-600 transition">Nhà Phố Trung Tâm Thủ Đức</h3>
-                            <p class="text-xs text-slate-500">Nguồn hàng ký gửi thổ cư chính chủ</p>
-                        </div>
-                    </div>
-                    <!-- Preview Card 3 -->
-                    <div onclick="switchTab('projects')" class="bg-white rounded-2xl overflow-hidden soft-shadow cursor-pointer hover:-translate-y-1 transition group">
-                        <div class="h-48 bg-slate-200 overflow-hidden relative">
-                            <!-- IMAGE HOLDER: PROJECT 3 -->
-                            <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=600&q=80" alt="Dự án chờ thay ảnh" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        </div>
-                        <div class="p-6 space-y-2">
-                            <h3 class="font-bold text-lg group-hover:text-blue-600 transition">BĐS Thương Mại Dòng Tiền</h3>
-                            <p class="text-xs text-slate-500">Văn phòng, mặt bằng cho thuê sinh lời</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 5. Hệ thống Dịch vụ Doanh nghiệp -->
-            <section class="space-y-8 bg-white p-8 md:p-12 rounded-3xl soft-shadow">
-                <div class="space-y-2">
-                    <span class="text-xs font-bold uppercase text-blue-600 tracking-wider">Chuỗi giá trị khép kín</span>
-                    <h2 class="text-3xl font-bold">Giải pháp bất động sản <span class="text-highlight">toàn diện và minh bạch</span>.</h2>
-                    <p class="text-slate-500 text-sm">Đáp ứng trọn vẹn mọi nhu cầu của khách hàng thông qua 3 trụ cột dịch vụ cốt lõi.</p>
-                </div>
-                <div class="grid md:grid-cols-3 gap-6 pt-4">
-                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 space-y-3">
-                        <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center text-white font-bold text-sm">1</div>
-                        <h3 class="font-bold text-lg text-slate-900">Tư vấn và môi giới BĐS</h3>
-                        <p class="text-sm text-slate-600">Phân phối sản phẩm sơ cấp dự án và dịch vụ môi giới thứ cấp an tâm, chuyên nghiệp.</p>
-                    </div>
-                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 space-y-3">
-                        <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center text-white font-bold text-sm">2</div>
-                        <h3 class="font-bold text-lg text-slate-900">Dịch vụ hậu mãi</h3>
-                        <p class="text-sm text-slate-600">Đồng hành thực hiện các thủ tục chuyển nhượng, hỗ trợ vận hành cho thuê, quản lý khai thác tài sản.</p>
-                    </div>
-                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 space-y-3">
-                        <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center text-white font-bold text-sm">3</div>
-                        <h3 class="font-bold text-lg text-slate-900">Giải pháp không gian</h3>
-                        <p class="text-sm text-slate-600">Tư vấn định giá thực tế thị trường, kết nối đơn vị thiết kế thi công hoàn thiện nội thất trọn gói.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 6. Phần Minh chứng Năng lực (Social Proof) -->
-            <section class="space-y-6">
-                <div class="text-center space-y-2">
-                    <span class="text-xs font-bold uppercase text-blue-600 tracking-wider">Định vị thương hiệu</span>
-                    <h2 class="text-3xl font-bold">Cột mốc thành tựu & <span class="text-highlight">Đối tác chiến lược</span></h2>
-                    <p class="text-slate-500 text-sm">Ghi nhận năng lực qua những chứng nhận xuất sắc thực tế.</p>
-                </div>
-                <!-- 5 Placeholder blocks for certificates -->
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 pt-4">
-                    <div class="bg-white p-4 rounded-xl border border-slate-100 soft-shadow flex flex-col items-center justify-center text-center h-44">
-                        <!-- IMAGE HOLDER: CERTIFICATE 1 -->
-                        <img src="https://via.placeholder.com/150x200?text=Chung+Nhan+1" alt="Chứng nhận chờ thay ảnh" class="h-28 object-contain mb-2">
-                        <span class="text-xs font-semibold text-slate-600">Chứng nhận Đại lý</span>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-slate-100 soft-shadow flex flex-col items-center justify-center text-center h-44">
-                        <!-- IMAGE HOLDER: CERTIFICATE 2 -->
-                        <img src="https://via.placeholder.com/150x200?text=Chung+Nhan+2" alt="Chứng nhận chờ thay ảnh" class="h-28 object-contain mb-2">
-                        <span class="text-xs font-semibold text-slate-600">Top Đại lý Phân phối</span>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-slate-100 soft-shadow flex flex-col items-center justify-center text-center h-44">
-                        <!-- IMAGE HOLDER: CERTIFICATE 3 -->
-                        <img src="https://via.placeholder.com/150x200?text=Chung+Nhan+3" alt="Chứng nhận chờ thay ảnh" class="h-28 object-contain mb-2">
-                        <span class="text-xs font-semibold text-slate-600">Đơn vị Xuất sắc</span>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-slate-100 soft-shadow flex flex-col items-center justify-center text-center h-44">
-                        <!-- IMAGE HOLDER: CERTIFICATE 4 -->
-                        <img src="https://via.placeholder.com/150x200?text=Chung+Nhan+4" alt="Chứng nhận chờ thay ảnh" class="h-28 object-contain mb-2">
-                        <span class="text-xs font-semibold text-slate-600">Thương hiệu Uy tín</span>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-slate-100 soft-shadow flex flex-col items-center justify-center text-center h-44">
-                        <!-- IMAGE HOLDER: CERTIFICATE 5 -->
-                        <img src="https://via.placeholder.com/150x200?text=Chung+Nhan+5" alt="Chứng nhận chờ thay ảnh" class="h-28 object-contain mb-2">
-                        <span class="text-xs font-semibold text-slate-600">Đối tác Đồng hành</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 7. Partner Logo Showcase -->
-            <section class="space-y-4 bg-white/60 p-6 rounded-2xl border border-slate-100 soft-shadow">
-                <p class="text-center text-xs font-bold text-slate-400 uppercase tracking-widest">Đồng hành phát triển bền vững cùng các đối tác danh tiếng</p>
-                <div class="grid grid-cols-4 md:grid-cols-7 gap-4 items-center justify-items-center">
-                    <div class="h-12 w-full max-w-[120px] bg-slate-100 rounded-lg flex items-center justify-center text-xs font-bold text-slate-400 p-2">
-                        <img src="https://via.placeholder.com/120x50?text=Partner+1" alt="Logo đối tác chờ thay" class="max-h-full max-w-full object-contain">
-                    </div>
-                    <div class="h-12 w-full max-w-[120px] bg-slate-100 rounded-lg flex items-center justify-center text-xs font-bold text-slate-400 p-2">
-                        <img src="https://via.placeholder.com/120x50?text=Partner+2" alt="Logo đối tác chờ thay" class="max-h-full max-w-full object-contain">
-                    </div>
-                    <div class="h-12 w-full max-w-[120px] bg-slate-100 rounded-lg flex items-center justify-center text-xs font-bold text-slate-400 p-2">
-                        <img src="https://via.placeholder.com/120x50?text=Partner+3" alt="Logo đối tác chờ thay" class="max-h-full max-w-full object-contain">
-                    </div>
-                    <div class="h-12 w-full max-w-[120px] bg-slate-100 rounded-lg flex items-center justify-center text-xs font-bold text-slate-400 p-2">
-                        <img src="https://via.placeholder.com/120x50?text=Partner+4" alt="Logo đối tác chờ thay" class="max-h-full max-w-full object-contain">
-                    </div>
-                    <div class="h-12 w-full max-w-[120px] bg-slate-100 rounded-lg flex items-center justify-center text-xs font-bold text-slate-400 p-2">
-                        <img src="https://via.placeholder.com/120x50?text=Partner+5" alt="Logo đối tác chờ thay" class="max-h-full max-w-full object-contain">
-                    </div>
-                    <div class="h-12 w-full max-w-[120px] bg-slate-100 rounded-lg flex items-center justify-center text-xs font-bold text-slate-400 p-2">
-                        <img src="https://via.placeholder.com/120x50?text=Partner+6" alt="Logo đối tác chờ thay" class="max-h-full max-w-full object-contain">
-                    </div>
-                    <div class="h-12 w-full max-w-[120px] bg-slate-100 rounded-lg flex items-center justify-center text-xs font-bold text-slate-400 p-2">
-                        <img src="https://via.placeholder.com/120x50?text=Partner+7" alt="Logo đối tác chờ thay" class="max-h-full max-w-full object-contain">
-                    </div>
-                </div>
-            </section>
-
-            <!-- 8. Tin tức & Hoạt động nổi bật -->
-            <section class="space-y-8">
-                <div class="flex justify-between items-end">
-                    <div class="space-y-2">
-                        <span class="text-xs font-bold uppercase text-blue-600 tracking-wider">Góc nhìn chuyên gia</span>
-                        <h2 class="text-3xl font-bold">Cập nhật <span class="text-highlight">biến động thị trường</span> thực tế.</h2>
-                    </div>
-                    <button onclick="switchTab('news')" class="text-blue-600 font-bold text-sm hover:underline hidden sm:block">Xem tất cả bài viết &rarr;</button>
-                </div>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div onclick="openNewsDetail()" class="bg-white rounded-2xl overflow-hidden soft-shadow border border-slate-100 cursor-pointer hover:-translate-y-1 transition group">
-                        <div class="h-44 bg-slate-200 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Tin tức chờ thay ảnh" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-5 space-y-3">
-                            <span class="text-[11px] font-bold text-blue-600 uppercase">Tiêu điểm thị trường</span>
-                            <h3 class="font-bold text-base leading-snug text-slate-900 group-hover:text-blue-600 transition">Đánh giá pháp lý và tiềm năng bất động sản dọc Quốc lộ 13 khu Đông</h3>
-                            <p class="text-xs text-slate-500 line-clamp-2">Hạ tầng giao thông mở rộng đem lại cơ hội lớn cho phân khúc căn hộ và tích sản dòng tiền.</p>
-                        </div>
-                    </div>
-                    <div onclick="openNewsDetail()" class="bg-white rounded-2xl overflow-hidden soft-shadow border border-slate-100 cursor-pointer hover:-translate-y-1 transition group">
-                        <div class="h-44 bg-slate-200 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80" alt="Tin tức chờ thay ảnh" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-5 space-y-3">
-                            <span class="text-[11px] font-bold text-blue-600 uppercase">Kiến thức pháp lý</span>
-                            <h3 class="font-bold text-base leading-snug text-slate-900 group-hover:text-blue-600 transition">Quy trình kiểm tra sổ hồng căn hộ chuẩn xác tránh rủi ro tranh chấp</h3>
-                            <p class="text-xs text-slate-500 line-clamp-2">Những điểm cốt lõi người mua nhà cần đối chiếu kỹ trên cổng thông tin quy hoạch công quy định mới.</p>
-                        </div>
-                    </div>
-                    <div onclick="openNewsDetail()" class="bg-white rounded-2xl overflow-hidden soft-shadow border border-slate-100 cursor-pointer hover:-translate-y-1 transition group">
-                        <div class="h-44 bg-slate-200 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80" alt="Tin tức chờ thay ảnh" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-5 space-y-3">
-                            <span class="text-[11px] font-bold text-blue-600 uppercase">Tin tức nội bộ</span>
-                            <h3 class="font-bold text-base leading-snug text-slate-900 group-hover:text-blue-600 transition">Vạn Lộc Realty khai trương văn phòng giao dịch trực tiếp tại Urban Green</h3>
-                            <p class="text-xs text-slate-500 line-clamp-2">Sự kiện đánh dấu cột mốc chiến lược nâng cao năng lực kết nối sản phẩm khu vực Thủ Đức.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 9. Biểu mẫu Đăng ký & Tư vấn nhanh -->
-            <section id="global-form" class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-3xl p-8 md:p-12 soft-shadow grid md:grid-cols-12 gap-8 items-center">
-                <div class="md:col-span-5 space-y-4">
-                    <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Liên hệ nhanh</span>
-                    <h2 class="text-3xl font-bold">Đặt lịch <span class="text-highlight">tư vấn miễn phí</span></h2>
-                    <p class="text-sm text-slate-300 leading-relaxed">Đội ngũ chuyên viên giàu kinh nghiệm thực tế tại Vạn Lộc Realty sẽ chủ động liên hệ hỗ trợ bạn trong thời gian sớm nhất.</p>
-                </div>
-                <form onsubmit="handleFormSubmit(event)" class="md:col-span-7 bg-white p-6 md:p-8 rounded-2xl text-slate-900 space-y-4 shadow-xl">
-                    <div class="grid sm:grid-cols-2 gap-4">
-                        <div class="space-y-1">
-                            <label class="text-xs font-bold text-slate-700">Họ và tên *</label>
-                            <input type="text" required placeholder="Nguyễn Văn A" class="w-full border border-slate-200 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-blue-500 transition">
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-xs font-bold text-slate-700">Số điện thoại *</label>
-                            <input type="tel" required placeholder="0901 234 567" class="w-full border border-slate-200 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-blue-500 transition">
-                        </div>
-                    </div>
-                    <div class="grid sm:grid-cols-2 gap-4">
-                        <div class="space-y-1">
-                            <label class="text-xs font-bold text-slate-700">Email</label>
-                            <input type="email" placeholder="name@company.com" class="w-full border border-slate-200 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-blue-500 transition">
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-xs font-bold text-slate-700">Nhu cầu khách hàng</label>
-                            <select class="w-full border border-slate-200 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-blue-500 transition bg-white">
-                                <option>Mua nhà</option>
-                                <option>Thuê nhà</option>
-                                <option>Đầu tư</option>
-                                <option>Tư vấn dự án</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button type="submit" class="w-full gradient-bg text-white py-3 rounded-xl font-bold text-sm shadow-md hover:opacity-95 transition mt-2">
-                        Gửi yêu cầu tư vấn
-                    </button>
-                </form>
-            </section>
+    <!-- HERO SECTION (BỐ CỤC CŨ UY TÍN) -->
+    <section class="relative bg-gray-900 text-white overflow-hidden py-24 sm:py-32">
+        <div class="absolute inset-0 opacity-40">
+            <!-- Ảnh nền bất động sản sang trọng -->
+            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1920&q=80" alt="Bất động sản cao cấp" class="w-full h-full object-cover">
         </div>
-
-        <!-- ========================================== -->
-        <!-- VIEW: TAB 1 - GIỚI THIỆU -->
-        <!-- ========================================== -->
-        <div id="tab-about" class="tab-content hidden space-y-24 animate-fadeIn">
-            <section class="space-y-6 max-w-3xl">
-                <span class="text-xs font-bold uppercase text-blue-600 tracking-wider">Về Vạn Lộc Realty</span>
-                <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">Kiến trúc sư của từng <span class="text-highlight">hành trình tài sản bền vững</span>.</h1>
-                <p class="text-slate-600 text-base leading-relaxed">Khẳng định vị thế uy tín, năng lực tư vấn chuẩn hóa và cam kết minh bạch thông tin trước một thị trường nhiều biến động. Chúng tôi tin rằng dịch vụ bất động sản chuẩn mực phải xuất phát từ sự trung thực và con người thực tại thực địa.</p>
-            </section>
-
-            <!-- Infographic Timeline Layout -->
-            <section class="space-y-12">
-                <h2 class="text-2xl font-bold text-center">Hành trình <span class="text-highlight">phát triển & Cột mốc</span> lịch sử</h2>
-                <div class="relative border-l-2 border-blue-500 md:grid md:grid-cols-3 md:border-l-0 md:border-t-2 md:pt-8 md:gap-8 space-y-8 md:space-y-0 pl-6 md:pl-0">
-                    <div class="relative">
-                        <div class="absolute -left-[31px] md:left-1/2 md:-top-[41px] -translate-x-1/2 w-4 h-4 rounded-full gradient-bg border-4 border-white shadow"></div>
-                        <div class="bg-white p-6 rounded-2xl soft-shadow border border-slate-100 space-y-2">
-                            <span class="font-extrabold text-blue-600 text-lg">Thành lập</span>
-                            <p class="text-xs text-slate-500">Đặt những viên gạch pháp lý và xây dựng bộ máy nhân sự chuẩn mực ban đầu tại TP. Thủ Đức.</p>
-                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=300&q=80" alt="Mốc thành lập chờ thay ảnh" class="w-full h-24 object-cover rounded-lg mt-2">
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <div class="absolute -left-[31px] md:left-1/2 md:-top-[41px] -translate-x-1/2 w-4 h-4 rounded-full gradient-bg border-4 border-white shadow"></div>
-                        <div class="bg-white p-6 rounded-2xl soft-shadow border border-slate-100 space-y-2">
-                            <span class="font-extrabold text-blue-600 text-lg">Gia nhập iHouzz</span>
-                            <p class="text-xs text-slate-500">Chính thức trở thành đơn vị nhượng quyền chiến lược, mở rộng rổ sản phẩm được thẩm định nghiêm ngặt.</p>
-                            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=300&q=80" alt="Mốc gia nhập chờ thay ảnh" class="w-full h-24 object-cover rounded-lg mt-2">
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <div class="absolute -left-[31px] md:left-1/2 md:-top-[41px] -translate-x-1/2 w-4 h-4 rounded-full gradient-bg border-4 border-white shadow"></div>
-                        <div class="bg-white p-6 rounded-2xl soft-shadow border border-slate-100 space-y-2">
-                            <span class="font-extrabold text-blue-600 text-lg">Hiện tại & Tương lai</span>
-                            <p class="text-xs text-slate-500">Trở thành đơn vị môi giới hàng đầu tại Urban Green và khu vực trục lộ chính kết nối giao thương.</p>
-                            <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=300&q=80" alt="Hiện tại chờ thay ảnh" class="w-full h-24 object-cover rounded-lg mt-2">
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 5 Core Values Box Architecture -->
-            <section class="space-y-8 bg-white p-8 md:p-12 rounded-3xl soft-shadow">
-                <h2 class="text-2xl font-bold text-center">5 Giá trị <span class="text-highlight">Cốt lõi vững chắc</span></h2>
-                <div class="grid md:grid-cols-5 gap-6 pt-4">
-                    <div class="p-5 rounded-xl bg-slate-50 border border-slate-100 space-y-2">
-                        <h3 class="font-bold text-blue-600 text-base">Chính trực</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed">Hành xử trung thực, minh bạch thông tin sản phẩm và pháp lý, bảo vệ quyền lợi hợp pháp của khách hàng.</p>
-                    </div>
-                    <div class="p-5 rounded-xl bg-slate-50 border border-slate-100 space-y-2">
-                        <h3 class="font-bold text-blue-600 text-base">Kết nối</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed">Nâng cao năng lực liên kết, tối ưu hóa cơ sở dữ liệu để kết nối nhanh chóng giữa nhu cầu thực và nguồn thực.</p>
-                    </div>
-                    <div class="p-5 rounded-xl bg-slate-50 border border-slate-100 space-y-2">
-                        <h3 class="font-bold text-blue-600 text-base">Chuyên nghiệp</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed">Quy chuẩn hóa tác phong làm việc, đạo đức nghề nghiệp chuyên sâu và năng lực phục vụ trực tiếp văn phòng.</p>
-                    </div>
-                    <div class="p-5 rounded-xl bg-slate-50 border border-slate-100 space-y-2">
-                        <h3 class="font-bold text-blue-600 text-base">Sáng tạo</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed">Không ngừng cải tiến giải pháp không gian, ứng dụng phương pháp linh hoạt để tối ưu giá trị tài sản bền vững.</p>
-                    </div>
-                    <div class="p-5 rounded-xl bg-slate-50 border border-slate-100 space-y-2">
-                        <h3 class="font-bold text-blue-600 text-base">Hiệu quả</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed">Cam kết mang lại giá trị thực, thúc đẩy thanh khoản nhanh chóng và đảm bảo dòng tiền đầu tư an toàn cho đối tác.</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ========================================== -->
-        <!-- VIEW: TAB 2 - DỰ ÁN -->
-        <!-- ========================================== -->
-        <div id="tab-projects" class="tab-content hidden space-y-16 animate-fadeIn">
-            <section class="space-y-6">
-                <span class="text-xs font-bold uppercase text-blue-600 tracking-wider">Giỏ hàng độc quyền</span>
-                <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">Hệ thống dự án <span class="text-highlight">dọc Quốc lộ 13 – Cạnh trục Metro</span> hiện đại</h1>
-                <p class="text-slate-600 max-w-3xl text-sm md:text-base">Cập nhật chính xác tiến độ, trạng thái bàn giao và pháp lý thực tế của rổ hàng nhà phố, căn hộ thương mại hàng đầu phân khúc.</p>
-            </section>
-
-            <div class="flex flex-wrap gap-3 border-b border-slate-200 pb-4">
-                <button class="gradient-bg text-white px-5 py-2 rounded-full text-xs font-bold shadow-sm">Tất cả</button>
-                <button class="bg-white hover:bg-slate-100 text-slate-700 px-5 py-2 rounded-full text-xs font-semibold border border-slate-200">Căn hộ</button>
-                <button class="bg-white hover:bg-slate-100 text-slate-700 px-5 py-2 rounded-full text-xs font-semibold border border-slate-200">Nhà phố</button>
-                <button class="bg-white hover:bg-slate-100 text-slate-700 px-5 py-2 rounded-full text-xs font-semibold border border-slate-200">Shophouse</button>
-            </div>
-
-            <!-- Enhanced Grid Card Layout: 2 Rows Display (6 Items) -->
-            <div class="grid md:grid-cols-3 gap-6">
-                <div onclick="scrollToDetail('project-detail-anchor')" class="bg-white rounded-2xl overflow-hidden soft-shadow border border-slate-100 group cursor-pointer">
-                    <div class="h-48 bg-slate-200 relative">
-                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80" alt="Urban Green chờ thay ảnh" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 text-[10px] font-bold bg-green-500 text-white px-2 py-0.5 rounded">Đang bàn giao</span>
-                    </div>
-                    <div class="p-5 space-y-2">
-                        <h3 class="font-bold text-base text-slate-900 group-hover:text-blue-600 transition">Urban Green Thủ Đức</h3>
-                        <p class="text-xs text-slate-500">Vị trí đắc địa cạnh Quốc lộ 13. Căn 1PN, 2PN, 3PN cao cấp chuẩn thiết kế resort.</p>
-                        <span class="text-xs font-bold text-blue-600 block pt-1">Nhấn để xem chi tiết dự án &rarr;</span>
-                    </div>
-                </div>
-                <div class="bg-white rounded-2xl overflow-hidden soft-shadow border border-slate-100 opacity-90">
-                    <div class="h-48 bg-slate-200 relative">
-                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="Dự án chờ thay ảnh" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-5 space-y-2">
-                        <h3 class="font-bold text-base text-slate-900">Vạn Lộc Shophouse Row</h3>
-                        <p class="text-xs text-slate-500">Mặt bằng kinh doanh sầm uất, khai thác dòng tiền cho thuê cực tốt ngay khối đế căn hộ.</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded-2xl overflow-hidden soft-shadow border border-slate-100 opacity-90">
-                    <div class="h-48 bg-slate-200 relative">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Dự án chờ thay ảnh" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-5 space-y-2">
-                        <h3 class="font-bold text-base text-slate-900">Hiệp Bình Phước Townhouse</h3>
-                        <p class="text-xs text-slate-500">Nhà phố liền kề, khu dân cư compound an ninh, pháp lý hoàn chỉnh sổ hồng riêng biệt.</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded-2xl overflow-hidden soft-shadow border border-slate-100 opacity-90">
-                    <div class="h-48 bg-slate-200 relative">
-                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80" alt="Dự án chờ thay ảnh" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-5 space-y-2">
-                        <h3 class="font-bold text-base text-slate-900">The Astra Premium Tower</h3>
-                        <p class="text-xs text-slate-500">Căn hộ hạng sang với tầm nhìn bao trọn Landmark 81, nội thất cao cấp chuẩn châu Âu.</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded-2xl overflow-hidden soft-shadow border border-slate-100 opacity-90">
-                    <div class="h-48 bg-slate-200 relative">
-                        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=80" alt="Dự án chờ thay ảnh" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-5 space-y-2">
-                        <h3 class="font-bold text-base text-slate-900">Riverside Boutique Villa</h3>
-                        <p class="text-xs text-slate-500">Biệt thự ven sông hiếm hoi tại khu Đông, mật độ mảng xanh resort tinh tế thượng lưu.</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded-2xl overflow-hidden soft-shadow border border-slate-100 opacity-90">
-                    <div class="h-48 bg-slate-200 relative">
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Dự án chờ thay ảnh" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-5 space-y-2">
-                        <h3 class="font-bold text-base text-slate-900">Metro Hub Commercial Center</h3>
-                        <p class="text-xs text-slate-500">Tổ hợp sàn thương mại, văn phòng làm việc hiện đại đón đầu làn sóng đầu tư hạ tầng.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Divider -->
-            <div id="project-detail-anchor" class="w-full h-[1px]" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 97, 255, 0.15), rgba(0, 0, 0, 0));"></div>
-
-            <!-- Detailed Subview: Detail Urban Green -->
-            <div class="bg-white p-8 md:p-12 rounded-3xl soft-shadow space-y-12">
-                <div class="border-l-4 border-blue-600 pl-4">
-                    <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Tiêu điểm đang xem</span>
-                    <h2 class="text-2xl font-bold">Chi tiết: Dự án Urban Green Thủ Đức</h2>
-                </div>
-
-                <!-- Khối 1: Bảng giá và Giỏ hàng -->
-                <div class="grid md:grid-cols-2 gap-8 items-center border-b border-slate-100 pb-8">
-                    <div class="space-y-4">
-                        <span class="text-xs font-bold uppercase text-slate-400">Thông tin thương mại</span>
-                        <h3 class="text-xl font-bold"><span class="text-highlight">Giỏ hàng căn hộ</span> và Bảng giá trực tiếp</h3>
-                        <p class="text-sm text-slate-600 leading-relaxed">Chi tiết giá bán (Căn 1PN từ 4,3 - 4,5 tỷ | 2PN từ 5,2 - 6,2 tỷ | 3PN từ 7 - 9 tỷ) và giá thuê thương mại tốt nhất thị trường (Căn 1PN từ 9 - 13 triệu/tháng).</p>
-                        <a href="tel:+84378220945" class="inline-block gradient-bg text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow-md">Hotline tư vấn mua bán hoặc nhận ký gửi ngay</a>
-                    </div>
-                    <div class="h-56 rounded-2xl overflow-hidden bg-slate-100">
-                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80" alt="Bảng giá chờ thay ảnh" class="w-full h-full object-cover">
-                    </div>
-                </div>
-
-                <!-- Khối 2: Thông tin Tổng quan và Tiến độ -->
-                <div class="grid md:grid-cols-2 gap-8 items-center border-b border-slate-100 pb-8">
-                    <div class="h-56 rounded-2xl overflow-hidden bg-slate-100 md:order-last">
-                        <img src="https://images.unsplash.com/photo-1504297050568-910d24c426d3?auto=format&fit=crop&w=800&q=80" alt="Tiến độ chờ thay ảnh" class="w-full h-full object-cover">
-                    </div>
-                    <div class="space-y-4">
-                        <span class="text-xs font-bold uppercase text-slate-400">Minh bạch thông tin</span>
-                        <h3 class="text-xl font-bold">Quy mô dự án và <span class="text-highlight">Tiến độ thực tế</span></h3>
-                        <p class="text-sm text-slate-600 leading-relaxed">Tổng diện tích quỹ đất rộng 20.203m2, mật độ xây dựng khối tháp đạt 32,3%. Hiện trạng dự án đang tiến hành bàn giao nhà từ tháng 5/2025, dự kiến hoàn thiện hồ sơ pháp lý bàn giao sổ hồng vào tháng 3/2026. Chủ đầu tư uy tín Kusto Home, Quản lý vận hành tiêu chuẩn quốc tế bởi CBRE.</p>
-                    </div>
-                </div>
-
-                <!-- Khối 3: Vị trí và Kết nối Giao thông -->
-                <div class="grid md:grid-cols-2 gap-8 items-center border-b border-slate-100 pb-8">
-                    <div class="space-y-4">
-                        <span class="text-xs font-bold uppercase text-slate-400">Vị trí chiến lược</span>
-                        <h3 class="text-xl font-bold">Tâm điểm <span class="text-highlight">kết nối giao thương</span> khu Đông</h3>
-                        <p class="text-sm text-slate-600 leading-relaxed">Tọa lạc tại Đường số 6, Hiệp Bình Phước, Thủ Đức, sát cạnh bên trục xương sống Quốc lộ 13. Khả năng kết nối vùng vượt trội: Chỉ mất 5 phút đến trung tâm thương mại Gigamall, 15 phút di chuyển thẳng ra Sân bay Tân Sơn Nhất và kết nối vùng lõi Trung tâm Quận 1 trong vòng 15 phút di chuyển.</p>
-                    </div>
-                    <div class="h-56 rounded-2xl overflow-hidden bg-slate-100">
-                        <img src="https://images.unsplash.com/photo-1524813686514-a57563d77965?auto=format&fit=crop&w=800&q=80" alt="Vị trí kết nối chờ thay ảnh" class="w-full h-full object-cover">
-                    </div>
-                </div>
-
-                <!-- Khối 4: Tiện ích Đẳng cấp & Thiết kế -->
-                <div class="grid md:grid-cols-2 gap-8 items-center border-b border-slate-100 pb-8">
-                    <div class="h-56 rounded-2xl overflow-hidden bg-slate-100 md:order-last">
-                        <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=800&q=80" alt="Tiện ích resort chờ thay ảnh" class="w-full h-full object-cover">
-                    </div>
-                    <div class="space-y-4">
-                        <span class="text-xs font-bold uppercase text-slate-400">Đặc quyền cư dân</span>
-                        <h3 class="text-xl font-bold">Tiện ích nội khu chuẩn Resort và <span class="text-highlight">Kiến trúc Bauhaus</span></h3>
-                        <p class="text-sm text-slate-600 leading-relaxed">Sở hữu chuỗi tiện ích cao cấp đặc quyền: Hồ bơi tràn bờ, vườn ánh sáng, phòng Gym chuyên nghiệp, Sauna, khu vui chơi trẻ em an toàn. Điểm nhấn là tháp Aster thượng lưu với tầm nhìn panorama trực diện Landmark 81 mang lại giá trị sống đỉnh cao.</p>
-                    </div>
-                </div>
-
-                <!-- Khối 5: Mặt bằng & Tiêu chuẩn Bàn giao -->
-                <div class="grid md:grid-cols-2 gap-8 items-center border-b border-slate-100 pb-8">
-                    <div class="space-y-4">
-                        <span class="text-xs font-bold uppercase text-slate-400">Mặt bằng chi tiết</span>
-                        <h3 class="text-xl font-bold">Sơ đồ thiết kế căn hộ và <span class="text-highlight">Vật liệu cao cấp</span></h3>
-                        <p class="text-sm text-slate-600 leading-relaxed">Diện tích thiết kế linh hoạt từ 50m2 đến 118m2 tối ưu không gian. Tiêu chuẩn bàn giao thô kết hợp hoàn thiện cơ bản cao cấp: Trang bị hệ thống khóa cửa thông minh Hafele, trọn bộ thiết bị vệ sinh cao cấp thương hiệu Grohe, hệ tủ bếp trên dưới bằng gỗ chống ẩm tiêu chuẩn quốc tế.</p>
-                    </div>
-                    <div class="h-56 rounded-2xl overflow-hidden bg-slate-100">
-                        <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80" alt="Mặt bằng thiết kế chờ thay ảnh" class="w-full h-full object-cover">
-                    </div>
-                </div>
-
-                <!-- Khối 6: Form Liên hệ Tư vấn Dự án -->
-                <div class="bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-100 space-y-4">
-                    <div class="space-y-1">
-                        <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Tư vấn trực tiếp</span>
-                        <h3 class="text-lg font-bold">Đăng ký nhận thông tin chi tiết dự án</h3>
-                        <p class="text-xs text-slate-500">Nhận trọn bộ tài liệu hồ sơ pháp lý kiểm duyệt và bảng tính toán phân tích dòng tiền đầu tư chuyên sâu riêng cho dự án này.</p>
-                    </div>
-                    <div class="grid sm:grid-cols-3 gap-4 pt-2">
-                        <input type="text" placeholder="Tên của bạn" class="bg-white border border-slate-200 px-4 py-2 rounded-xl text-xs focus:outline-none focus:border-blue-500">
-                        <input type="tel" placeholder="Số điện thoại của bạn" class="bg-white border border-slate-200 px-4 py-2 rounded-xl text-xs focus:outline-none focus:border-blue-500">
-                        <button onclick="alert('Đã tiếp nhận yêu cầu tư vấn dự án!')" class="gradient-bg text-white px-4 py-2 rounded-xl font-bold text-xs shadow-sm hover:opacity-95 transition">Đăng ký nhận tài liệu</button>
-                    </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left">
+            <div class="max-w-3xl">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-[var(--color-primary)] text-white mb-6 uppercase tracking-wider">Thành viên chiến lược iHouzz</span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+                    Giải Pháp An Cư & Đầu Tư <br class="hidden sm:inline"><span class="text-[var(--color-primary)]">Bất Động Sản Toàn Diện</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl">
+                    iHouzz Vạn Lộc Realty tự hào là đơn vị phân phối chính thức các dự án căn hộ, nhà phố và bất động sản dòng tiền uy tín hàng đầu. Cam kết pháp lý minh bạch, sinh lời bền vững.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                    <a href="#" class="px-8 py-4 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white font-bold rounded-lg shadow-lg text-center transition-all">
+                        Xem Các Dự Án Mở Bán
+                    </a>
+                    <a href="#" class="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-lg backdrop-blur-sm text-center border border-white/20 transition-all">
+                        Nhận Báo Giá Ngay
+                    </a>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- ========================================== -->
-        <!-- VIEW: TAB 3 - DỊCH VỤ -->
-        <!-- ========================================== -->
-        <div id="tab-services" class="tab-content hidden space-y-12 animate-fadeIn">
-            <section class="space-y-4 max-w-3xl">
-                <span class="text-xs font-bold uppercase text-blue-600 tracking-wider">Hệ thống Trụ cột</span>
-                <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">Giải pháp bất động sản <span class="text-highlight">toàn diện & chuyên sâu</span></h1>
-                <p class="text-slate-600 text-sm md:text-base">Chúng tôi không đơn thuần thực hiện giao dịch, chúng tôi cung cấp giải pháp trọn vòng đời tài sản nhằm kiểm soát tối đa mọi rủi ro.</p>
-            </section>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Phân mục Môi giới Bất động sản -->
-                <div class="bg-white p-8 rounded-3xl soft-shadow border border-slate-100 space-y-6">
-                    <div class="space-y-2">
-                        <span class="text-xs font-bold uppercase text-blue-600 tracking-wider">Dịch vụ chuyên nghiệp</span>
-                        <h2 class="text-xl font-bold text-slate-900">Môi giới căn hộ, nhà phố và <span class="text-highlight">BĐS thương mại</span></h2>
-                    </div>
-                    <p class="text-xs text-slate-600 leading-relaxed">Quy trình dịch vụ chuẩn hóa đi qua 4 giai đoạn minh bạch tuyệt đối: Khảo sát tư vấn phân tích sản phẩm phù hợp &rarr; Cung cấp kiểm tra thông tin pháp lý xác thực &rarr; Kết nối trực tiếp giữa chủ sở hữu hoặc chủ đầu tư &rarr; Đồng hành toàn diện hậu mãi trong giao dịch.</p>
-                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=80" alt="Môi giới chờ thay ảnh" class="w-full h-32 object-cover rounded-xl">
-                </div>
-
-                <!-- Phân mục Tư vấn Bất động sản -->
-                <div class="bg-white p-8 rounded-3xl soft-shadow border border-slate-100 space-y-6">
-                    <div class="space-y-2">
-                        <span class="text-xs font-bold uppercase text-blue-600 tracking-wider">Tư vấn chiến lược</span>
-                        <h2 class="text-xl font-bold text-slate-900">Tối ưu dòng tiền đầu tư và <span class="text-highlight">kiểm soát rủi ro</span></h2>
-                    </div>
-                    <p class="text-xs text-slate-600 leading-relaxed">Đồng hành cùng các nhà đầu tư bằng giải pháp thực địa chuẩn xác: Phân tích sâu thực trạng biến động thị trường &rarr; Tư vấn lựa chọn phân khúc tích sản bền vững phù hợp &rarr; Đánh giá rủi ro pháp lý &rarr; Tư vấn thiết lập chiến lược quản trị tài sản dòng tiền dài hạn.</p>
-                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=400&q=80" alt="Tư vấn chờ thay ảnh" class="w-full h-32 object-cover rounded-xl">
-                </div>
-
-                <!-- Phân mục Chính sách hậu mãi -->
-                <div class="bg-white p-8 rounded-3xl soft-shadow border border-slate-100 space-y-6">
-                    <div class="space-y-2">
-                        <span class="text-xs font-bold uppercase text-blue-600 tracking-wider">Cam kết trọn đời</span>
-                        <h2 class="text-xl font-bold text-slate-900">Chuỗi giá trị <span class="text-highlight">quản lý tài sản</span> khép kín</h2>
-                    </div>
-                    <p class="text-xs text-slate-600 leading-relaxed">Đảm bảo tính thanh khoản tối đa và khai thác giá trị thương mại tốt nhất cho tài sản: Hỗ trợ hoàn thiện thủ tục chuyển nhượng lại &rarr; Cung cấp dịch vụ cho thuê và quản lý vận hành tòa nhà &rarr; Tư vấn thiết kế hoàn thiện nội thất &rarr; Tư vấn định giá thực tế.</p>
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400&q=80" alt="Hậu mãi chờ thay ảnh" class="w-full h-32 object-cover rounded-xl">
-                </div>
-            </div>
-        </div>
-
-        <!-- ========================================== -->
-        <!-- VIEW: TAB 4 - TIN TỨC -->
-        <!-- ========================================== -->
-        <div id="tab-news" class="tab-content hidden space-y-12 animate-fadeIn">
-            <section class="text-center max-w-2xl mx-auto space-y-4">
-                <span class="text-xs font-bold uppercase text-blue-600 tracking-wider">Tin tức</span>
-                <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">Kiến thức & xu hướng <span class="text-highlight">thị trường thực tế</span>.</h1>
-                <p class="text-slate-500 text-sm md:text-base">Nơi cung cấp các bài viết phân tích chuyên sâu đã qua kiểm duyệt kỹ lưỡng từ đội ngũ chuyên gia bất động sản thực địa.</p>
-            </section>
-
-            <!-- Search Bar Interface Center-Aligned -->
-            <div class="max-w-md mx-auto relative">
-                <input type="text" placeholder="Tìm kiếm từ khóa bài viết..." class="w-full border border-slate-200 bg-white px-5 py-3 rounded-2xl text-sm shadow-sm focus:outline-none focus:border-blue-500 transition">
+    <!-- KHỐI NỘI DUNG TÓM TẮT DỰ ÁN (BỐ CỤC CŨ) -->
+    <section class="py-16 sm:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Dự Án Nổi Bật Đang Phân Phối</h2>
+                <div class="w-16 h-1 bg-[var(--color-primary)] mx-auto mt-4 rounded"></div>
+                <p class="mt-4 text-lg text-gray-500">Giỏ hàng độc quyền với chính sách chiết khấu tốt nhất trực tiếp từ chủ đầu tư.</p>
             </div>
 
-            <!-- Horizontal Sub-tab category switcher row -->
-            <div class="flex flex-wrap justify-center gap-2 border-b border-slate-200 pb-4 text-xs font-semibold text-slate-600">
-                <button class="text-blue-600 border-b-2 border-blue-600 pb-2 px-3 font-bold">Tất cả</button>
-                <button class="hover:text-blue-600 pb-2 px-3">Tiêu điểm thị trường</button>
-                <button class="hover:text-blue-600 pb-2 px-3">Bất động sản căn hộ</button>
-                <button class="hover:text-blue-600 pb-2 px-3">Kiến thức pháp lý</button>
-                <button class="hover:text-blue-600 pb-2 px-3">Kinh nghiệm giao dịch an toàn</button>
-                <button class="hover:text-blue-600 pb-2 px-3">Tin tức nội bộ</button>
-            </div>
-
-            <!-- News List Hub Display -->
-            <div class="grid md:grid-cols-3 gap-6">
-                <div onclick="scrollToDetail('deep-article-box')" class="bg-white rounded-2xl overflow-hidden soft-shadow border border-slate-100 cursor-pointer group">
-                    <div class="h-44 bg-slate-200 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Tin tức chờ thay ảnh" class="w-full h-full object-cover">
+            <!-- Grid danh sách căn hộ/dự án -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Dự án 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100 hover:shadow-xl transition-shadow">
+                    <div class="relative h-56 bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Căn hộ mẫu" class="w-full h-full object-cover">
+                        <span class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded">HOT MỞ BÁN</span>
                     </div>
-                    <div class="p-5 space-y-3">
-                        <span class="text-[10px] font-bold text-blue-600 uppercase">Tiêu điểm thị trường</span>
-                        <h3 class="font-bold text-base leading-snug text-slate-900 group-hover:text-blue-600 transition">Đánh giá chi tiết tính pháp lý và tiềm năng bất động sản khu Đông TP. HCM</h3>
-                        <p class="text-xs text-slate-500 line-clamp-2">Nhấp chọn xem bài viết chi tiết được cập nhật đầy đủ bên dưới.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Divider -->
-            <div class="w-full h-[1px]" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 97, 255, 0.15), rgba(0, 0, 0, 0));"></div>
-
-            <!-- Single Deep Article Container Layout View -->
-            <article id="deep-article-box" class="bg-white p-8 md:p-12 rounded-3xl soft-shadow max-w-3xl mx-auto space-y-6">
-                <div class="space-y-2">
-                    <span class="text-xs font-bold bg-blue-50 text-blue-600 px-3 py-1 rounded-full uppercase">Kiến thức chuyên sâu</span>
-                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Đánh giá chi tiết tính pháp lý và tiềm năng bất động sản khu Đông TP. HCM</h2>
-                    <p class="text-xs text-slate-400">Đăng bởi Ban Chuyên Gia Vạn Lộc Realty | Cập nhật thực tế</p>
-                </div>
-                <div class="h-64 md:h-80 rounded-2xl overflow-hidden bg-slate-100">
-                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80" alt="Hình ảnh bài viết chi tiết chờ thay" class="w-full h-full object-cover">
-                </div>
-                <div class="text-slate-700 text-sm md:text-base leading-relaxed space-y-4">
-                    <p class="font-semibold text-slate-900">Bài viết đi sâu phân tích tiến độ hạ tầng giao thông mở rộng Quốc lộ 13, các điều kiện cấp sổ hồng thực tế tại khu vực Thủ Đức và phương pháp tối ưu dòng tiền tích sản thông qua căn hộ thứ cấp.</p>
-                    <p>Đội ngũ chuyên gia Vạn Lộc Realty khuyến nghị các nhà đầu tư cá nhân cần tiến hành đối chiếu kỹ lưỡng sơ đồ quy hoạch tổng thể của cơ quan chức năng, kiểm tra tính pháp lý hiện tại của chủ đầu tư cũng như năng lực thực tế quản lý vận hành của ban quản lý tòa nhà trước khi chính thức xuống tiền ký kết hợp đồng mua bán tài sản.</p>
-                </div>
-                <div class="pt-4 border-t border-slate-100">
-                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="text-xs font-bold text-blue-600 hover:underline">&uarr; Quay lại đầu trang tin tức</button>
-                </div>
-            </article>
-        </div>
-
-        <!-- ========================================== -->
-        <!-- VIEW: TAB 5 - TUYỂN DỤNG -->
-        <!-- ========================================== -->
-        <div id="tab-careers" class="tab-content hidden space-y-16 animate-fadeIn">
-            <section class="space-y-4 max-w-3xl">
-                <span class="text-xs font-bold uppercase text-blue-600 tracking-wider">Gia nhập đội ngũ</span>
-                <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">Chiêu mộ cộng sự – <span class="text-highlight">Chuyên viên tư vấn bất động sản</span> chuyên nghiệp</h1>
-                <p class="text-slate-600 text-sm md:text-base">Tìm kiếm những nhân sự tài năng có tác phong chuẩn mực và đạo đức nghề nghiệp cao để cùng đồng hành xây dựng hệ thống hành trình tài sản bền vững vững chắc.</p>
-            </section>
-
-            <!-- 4-Column Vì sao chọn Vạn Lộc Realty Grid Card -->
-            <section class="space-y-6">
-                <div class="space-y-2">
-                    <span class="text-xs font-bold uppercase text-blue-600 tracking-wider">Giá trị cốt lõi cho cộng sự</span>
-                    <h2 class="text-2xl font-bold">Vì sao chọn Vạn Lộc Realty?</h2>
-                </div>
-                <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-                    <div class="bg-white p-6 rounded-2xl border border-slate-100 soft-shadow text-center space-y-3">
-                        <div class="w-12 h-12 mx-auto rounded-full bg-blue-50 flex items-center justify-center text-blue-600 font-bold">&#10004;</div>
-                        <h4 class="font-bold text-sm text-slate-900">Thu nhập minh bạch, đột phá</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">Chính sách chi trả hoa hồng rõ ràng nhanh chóng, cơ chế ghi nhận xứng đáng theo năng lực cống hiến thực tế cá nhân.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl border border-slate-100 soft-shadow text-center space-y-3">
-                        <div class="w-12 h-12 mx-auto rounded-full bg-blue-50 flex items-center justify-center text-blue-600 font-bold">&#10004;</div>
-                        <h4 class="font-bold text-sm text-slate-900">Danh mục sản phẩm đa dạng</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">Nguồn hàng dự án phong phú đã thẩm định kỹ lưỡng, pháp lý sạch đầy đủ, đảm bảo uy tín tuyệt đối khi tư vấn.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl border border-slate-100 soft-shadow text-center space-y-3">
-                        <div class="w-12 h-12 mx-auto rounded-full bg-blue-50 flex items-center justify-center text-blue-600 font-bold">&#10004;</div>
-                        <h4 class="font-bold text-sm text-slate-900">Chính sách đãi ngộ cạnh tranh</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">Chế độ khen thưởng nóng hấp dẫn, chính sách hỗ trợ chi phí marketing và phúc lợi xã hội toàn diện dựa trên đóng góp.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl border border-slate-100 soft-shadow text-center space-y-3">
-                        <div class="w-12 h-12 mx-auto rounded-full bg-blue-50 flex items-center justify-center text-blue-600 font-bold">&#10004;</div>
-                        <h4 class="font-bold text-sm text-slate-900">Lộ trình phát triển bền vững</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">Định hướng con đường sự nghiệp rõ ràng dài hạn, đào tạo nâng cao kỹ năng thực chiến và cơ hội thăng tiến rộng mở.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Danh mục vị trí ứng tuyển -->
-            <section class="space-y-6">
-                <div class="space-y-2">
-                    <span class="text-xs font-bold uppercase text-blue-600 tracking-wider">Cơ hội nghề nghiệp</span>
-                    <h2 class="text-2xl font-bold">Các vị trí <span class="text-highlight">đang tuyển dụng</span></h2>
-                </div>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div onclick="selectPosition('Chuyên viên Tư vấn Bất động sản Sơ cấp')" class="bg-white p-6 rounded-2xl border border-slate-100 soft-shadow cursor-pointer hover:border-blue-500 transition duration-300 space-y-3">
-                        <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded uppercase">Full-time</span>
-                        <h3 class="font-bold text-base text-slate-900">Chuyên viên Tư vấn Bất động sản Sơ cấp (Căn hộ, Dự án mới).</h3>
-                        <span class="text-xs text-blue-600 font-semibold block">Nhấn chọn để nộp đơn nhanh &rarr;</span>
-                    </div>
-                    <div onclick="selectPosition('Chuyên viên Tư vấn Bất động sản Thứ cấp')" class="bg-white p-6 rounded-2xl border border-slate-100 soft-shadow cursor-pointer hover:border-blue-500 transition duration-300 space-y-3">
-                        <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded uppercase">Full-time</span>
-                        <h3 class="font-bold text-base text-slate-900">Chuyên viên Tư vấn Bất động sản Thứ cấp (Nhà phố, Cho thuê).</h3>
-                        <span class="text-xs text-blue-600 font-semibold block">Nhấn chọn để nộp đơn nhanh &rarr;</span>
-                    </div>
-                    <div onclick="selectPosition('Trưởng nhóm Kinh doanh Bất động dòng tiền')" class="bg-white p-6 rounded-2xl border border-slate-100 soft-shadow cursor-pointer hover:border-blue-500 transition duration-300 space-y-3">
-                        <span class="text-[10px] font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded uppercase">Quản lý</span>
-                        <h3 class="font-bold text-base text-slate-900">Trưởng nhóm Kinh doanh Bất động sản dòng tiền.</h3>
-                        <span class="text-xs text-blue-600 font-semibold block">Nhấn chọn để nộp đơn nhanh &rarr;</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Form nộp hồ sơ tuyển dụng -->
-            <section id="career-form-anchor" class="bg-white p-8 md:p-12 rounded-3xl soft-shadow max-w-2xl mx-auto space-y-6 border border-slate-100">
-                <div class="text-center space-y-2">
-                    <span class="text-xs font-bold uppercase text-blue-600 tracking-wider">Ứng tuyển ngay</span>
-                    <h2 class="text-2xl font-bold text-slate-900">Mở rộng cánh cửa nghề nghiệp <span class="text-highlight">cùng chúng tôi ngay hôm nay</span></h2>
-                    <p class="text-xs text-slate-500">Bộ phận Nhân sự sẽ trực tiếp liên hệ đặt lịch phỏng vấn trực tiếp tại văn phòng trong vòng 48 giờ.</p>
-                </div>
-                <form onsubmit="alert('Đã nộp thông tin ứng tuyển thành công!'); event.preventDefault();" class="space-y-4">
-                    <div class="grid sm:grid-cols-2 gap-4">
-                        <div class="space-y-1">
-                            <label class="text-xs font-bold text-slate-700">Họ và tên *</label>
-                            <input type="text" required placeholder="Nguyễn Văn A" class="w-full border border-slate-200 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-blue-500 bg-slate-50">
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-xs font-bold text-slate-700">Số điện thoại *</label>
-                            <input type="tel" required placeholder="0901 234 567" class="w-full border border-slate-200 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-blue-500 bg-slate-50">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Phân Khu Căn Hộ Cao Cấp Trung Tâm</h3>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">Sở hữu vị trí kim cương với tầm nhìn panaroma toàn cảnh thành phố, tiện ích chuẩn resort 5 sao.</p>
+                        <div class="flex items-center justify-between text-sm font-semibold border-t border-gray-100 pt-4 text-[var(--color-primary)]">
+                            <span>Giá từ: 2.5 Tỷ/Căn</span>
+                            <a href="#" class="hover:underline">Chi tiết <i class="fa-solid fa-arrow-right ml-1 text-xs"></i></a>
                         </div>
                     </div>
-                    <div class="space-y-1">
-                        <label class="text-xs font-bold text-slate-700">Vị trí ứng tuyển *</label>
-                        <select id="job-dropdown" class="w-full border border-slate-200 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-blue-500 bg-slate-50">
-                            <option>Chuyên viên Tư vấn Bất động sản Sơ cấp (Căn hộ, Dự án mới).</option>
-                            <option>Chuyên viên Tư vấn Bất động sản Thứ cấp (Nhà phố, Cho thuê, Chuyển nhượng).</option>
-                            <option>Trưởng nhóm Kinh doanh Bất động sản dòng tiền.</option>
-                        </select>
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-xs font-bold text-slate-700">Đính kèm hồ sơ / CV *</label>
-                        <input type="file" required class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer">
-                    </div>
-                    <button type="submit" class="w-full gradient-bg text-white py-3 rounded-xl font-bold text-sm shadow-md hover:opacity-95 transition pt-2">
-                        Gửi hồ sơ ứng tuyển
-                    </button>
-                </form>
-            </section>
-        </div>
-
-        <!-- ========================================== -->
-        <!-- VIEW: TAB 6 - LIÊN HỆ -->
-        <!-- ========================================== -->
-        <div id="tab-contact" class="tab-content hidden space-y-12 animate-fadeIn">
-            <section class="text-center max-w-2xl mx-auto space-y-2">
-                <span class="text-xs font-bold uppercase text-blue-600 tracking-wider">Liên hệ</span>
-                <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">Kết nối với chúng tôi, <span class="text-highlight">phản hồi trong 24 giờ</span></h1>
-                <p class="text-slate-500 text-sm">Để lại thông tin cụ thể, đội ngũ nhân sự chuyên nghiệp của Vạn Lộc Realty sẽ liên hệ phản hồi tư vấn chính xác theo nhu cầu của bạn.</p>
-            </section>
-
-            <div class="grid md:grid-cols-12 gap-8 items-start">
-                <div class="md:col-span-7 bg-white p-6 md:p-8 rounded-3xl soft-shadow border border-slate-100 space-y-4">
-                    <div class="space-y-1">
-                        <span class="text-xs font-bold text-blue-600 uppercase">Nhận tư vấn miễn phí</span>
-                        <h3 class="text-lg font-bold">Gửi thông tin tư vấn</h3>
-                        <p class="text-xs text-slate-400">Điền thông tin bên dưới, chúng tôi sẽ liên hệ lại trong vòng 24 giờ làm việc.</p>
-                    </div>
-                    <form onsubmit="alert('Đã gửi thông tin liên hệ tư vấn thành công!'); event.preventDefault();" class="space-y-4 pt-2">
-                        <div class="grid sm:grid-cols-2 gap-4">
-                            <div class="space-y-1">
-                                <label class="text-xs font-bold text-slate-700">Họ và tên *</label>
-                                <input type="text" required placeholder="Nguyễn Văn A" class="w-full border border-slate-200 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-blue-500">
-                            </div>
-                            <div class="space-y-1">
-                                <label class="text-xs font-bold text-slate-700">Số điện thoại *</label>
-                                <input type="tel" required placeholder="0901 234 567" class="w-full border border-slate-200 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-blue-500">
-                            </div>
-                        </div>
-                        <div class="grid sm:grid-cols-2 gap-4">
-                            <div class="space-y-1">
-                                <label class="text-xs font-bold text-slate-700">Email</label>
-                                <input type="email" placeholder="email@company.com" class="w-full border border-slate-200 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-blue-500">
-                            </div>
-                            <div class="space-y-1">
-                                <label class="text-xs font-bold text-slate-700">Công ty / Tổ chức</label>
-                                <input type="text" placeholder="Tên công ty" class="w-full border border-slate-200 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-blue-500">
-                            </div>
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-xs font-bold text-slate-700">Bạn quan tâm đến *</label>
-                            <select class="w-full border border-slate-200 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-blue-500 bg-white">
-                                <option>Mua căn hộ</option>
-                                <option>Thuê căn hộ</option>
-                                <option>Đầu tư bất động sản dòng tiền</option>
-                                <option>Ký gửi tài sản</option>
-                            </select>
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-xs font-bold text-slate-700">Nội dung nhu cầu</label>
-                            <textarea rows="3" placeholder="Mô tả nhu cầu của bạn để chúng tôi tư vấn phù hợp nhất..." class="w-full border border-slate-200 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-blue-500"></textarea>
-                        </div>
-                        <button type="submit" class="w-full gradient-bg text-white py-3 rounded-xl font-bold text-sm shadow-md hover:opacity-95 transition">
-                            Gửi thông tin
-                        </button>
-                    </form>
                 </div>
 
-                <div class="md:col-span-5 space-y-6">
-                    <div class="bg-white p-6 rounded-3xl soft-shadow border border-slate-100 space-y-4">
-                        <div class="space-y-1">
-                            <span class="text-xs font-bold text-blue-600 uppercase">Địa điểm giao dịch trực tiếp</span>
-                            <h3 class="font-bold text-base">Vị trí văn phòng</h3>
-                            <p class="text-xs text-slate-500 leading-relaxed">Văn phòng Vạn Lộc Realty tại Urban Green, Số 01 Đường số 6, Hiệp Bình Phước, TP. Thủ Đức, Việt Nam.</p>
-                        </div>
-                        <div class="rounded-2xl overflow-hidden border border-slate-100 h-48 bg-slate-200 relative">
-                            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=600&q=80" alt="Bản đồ chỉ đường chờ thay thế" class="w-full h-full object-cover">
+                <!-- Dự án 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100 hover:shadow-xl transition-shadow">
+                    <div class="relative h-56 bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80" alt="Nhà phố liền kề" class="w-full h-full object-cover">
+                        <span class="absolute top-4 left-4 bg-[var(--color-primary)] text-white text-xs font-bold px-2.5 py-1 rounded">ƯU ĐÃI KHỦNG</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Nhà Phố Liền Kề Khu Đô Thị Sinh Thái</h3>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">Không gian sống xanh mát chan hòa cùng thiên nhiên, hạ tầng đồng bộ, thanh toán giãn lên đến 3 năm.</p>
+                        <div class="flex items-center justify-between text-sm font-semibold border-t border-gray-100 pt-4 text-[var(--color-primary)]">
+                            <span>Giá từ: 4.8 Tỷ/Căn</span>
+                            <a href="#" class="hover:underline">Chi tiết <i class="fa-solid fa-arrow-right ml-1 text-xs"></i></a>
                         </div>
                     </div>
+                </div>
 
-                    <div class="bg-white p-6 rounded-3xl soft-shadow border border-slate-100 space-y-4">
-                        <div class="space-y-1">
-                            <span class="text-xs font-bold text-blue-600 uppercase">Theo dõi chúng tôi trên môi trường số</span>
-                            <h3 class="font-bold text-base">Theo dõi Vạn Lộc Realty tại</h3>
-                        </div>
-                        <div class="flex gap-4">
-                            <a href="https://facebook.com" target="_blank" class="w-11 h-11 rounded-full bg-slate-100 hover:bg-blue-50 flex items-center justify-center text-blue-600 transition shadow-sm border border-slate-200/60" title="Facebook">
-                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.8z"/></svg>
-                            </a>
-                            <a href="https://zalo.me" target="_blank" class="w-11 h-11 rounded-full bg-slate-100 hover:bg-sky-50 flex items-center justify-center text-sky-600 transition shadow-sm border border-slate-200/60" title="Zalo">
-                                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 5.58 2 10c0 2.9 1.8 5.4 4.5 6.8-.2.8-.7 2.3-.7 2.4 0 .2.1.3.3.2.3-.1 2.8-1.7 3.7-2.3.7.2 1.4.3 2.2.3 5.52 0 10-3.58 10-8s-4.48-8-10-8z" /></svg>
-                            </a>
-                            <a href="mailto:vanlocrealty@gmail.com" class="w-11 h-11 rounded-full bg-slate-100 hover:bg-red-50 flex items-center justify-center text-red-500 transition shadow-sm border border-slate-200/60" title="Gmail">
-                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                            </a>
+                <!-- Dự án 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100 hover:shadow-xl transition-shadow">
+                    <div class="relative h-56 bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="Shophouse thương mại" class="w-full h-full object-cover">
+                        <span class="absolute top-4 left-4 bg-purple-600 text-white text-xs font-bold px-2.5 py-1 rounded">ĐẦU TƯ</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Shophouse Thương Mại Mặt Tiền Đại Lộ</h3>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">Vị trí kinh doanh sầm uất, nguồn khách hàng nội khu có sẵn cực lớn. Tiềm năng tăng giá vượt trội.</p>
+                        <div class="flex items-center justify-between text-sm font-semibold border-t border-gray-100 pt-4 text-[var(--color-primary)]">
+                            <span>Giá: Liên hệ</span>
+                            <a href="#" class="hover:underline">Chi tiết <i class="fa-solid fa-arrow-right ml-1 text-xs"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-    </main>
-
-    <!-- FOOTER SHARED UTILITY REGION (Đã được đồng bộ hiển thị cho mọi trang) -->
-    <footer class="bg-slate-900 text-slate-400 text-xs py-12 border-t border-slate-800 w-full mt-auto">
-        <div class="max-w-[1200px] mx-auto px-6 grid md:grid-cols-3 gap-8">
-            <div class="space-y-3">
-                <p class="text-white font-bold text-sm">Công ty Cổ phần Vạn Lộc Realty</p>
-                <p class="leading-relaxed">Đơn vị nhượng quyền thương hiệu chính thức từ hệ thống bất động sản đáng tin cậy iHouzz. Tận tâm đồng hành bảo vệ giá trị thực.</p>
+    <!-- FOOTER DÙNG CHUNG (CỐ ĐỊNH PHIÊN BẢN CHUẨN) -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">iHouzz Vạn Lộc Realty</h4>
+                    <p class="text-sm leading-relaxed">Đơn vị tư vấn và phân phối bất động sản trung thực, tận tâm, đồng hành cùng hành trình tìm kiếm tổ ấm và tích lũy tài sản của bạn.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Thông Liên Hệ</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><i class="fa-solid fa-location-dot mr-2 text-[var(--color-primary)]"></i> TP. Hồ Chí Minh, Việt Nam</li>
+                        <li><i class="fa-solid fa-phone mr-2 text-[var(--color-primary)]"></i> 090 000 0000</li>
+                        <li><i class="fa-solid fa-envelope mr-2 text-[var(--color-primary)]"></i> info@vanlocrealty.vn</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Kết Nối Với Chúng Tôi</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-[var(--color-primary)] transition-colors"><i class="fa-brands fa-facebook text-xl"></i></a>
+                        <a href="#" class="hover:text-[var(--color-primary)] transition-colors"><i class="fa-brands fa-zalo text-xl font-bold">Z</i></a>
+                        <a href="#" class="hover:text-[var(--color-primary)] transition-colors"><i class="fa-solid fa-globe text-xl"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="space-y-2">
-                <p class="text-white font-bold text-sm">Thông tin liên hệ hệ thống</p>
-                <p>Địa chỉ văn phòng: Số 01 đường số 06, phường Hiệp Bình Phước, thành phố Thủ Đức, Việt Nam.</p>
-                <p>Hotline: +84 378 220 945 | Email: vanlocrealty@gmail.com</p>
-            </div>
-            <div class="space-y-2">
-                <p class="text-white font-bold text-sm">Quy chuẩn dịch vụ</p>
-                <p>Nguồn hàng được kiểm duyệt nghiêm ngặt - Đội ngũ nhân lực chuẩn mực đạo đức nghề nghiệp chuyên sâu.</p>
-                <p class="text-[10px] text-slate-600">&copy; 2026 Vạn Lộc Realty. All rights reserved.</p>
+            <div class="border-t border-gray-800 pt-8 text-center text-xs">
+                <p>&copy; 2026 iHouzz Vạn Lộc Realty. All rights reserved. Phát triển bởi Đội ngũ Công nghệ.</p>
             </div>
         </div>
     </footer>
 
-    <!-- STICKY QUICK ACTIONS -->
-    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
-        <a href="tel:+84378220945" class="bg-green-600 text-white p-3.5 rounded-full shadow-lg hover:bg-green-700 transition flex items-center justify-center" title="Gọi ngay">
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-        </a>
-        <a href="https://zalo.me" target="_blank" class="gradient-bg text-white px-4 py-2.5 rounded-full shadow-lg hover:opacity-95 transition flex items-center gap-1.5 text-xs font-bold" title="Kết nối qua Zalo">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 5.58 2 10c0 2.9 1.8 5.4 4.5 6.8-.2.8-.7 2.3-.7 2.4 0 .2.1.3.3.2.3-.1 2.8-1.7 3.7-2.3.7.2 1.4.3 2.2.3 5.52 0 10-3.58 10-8s-4.48-8-10-8z" /></svg>
-            <span>Zalo</span>
-        </a>
-        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="bg-slate-900/80 hover:bg-slate-900 text-white p-3 rounded-full shadow-lg transition flex items-center justify-center" title="Quay lên đầu trang">
-            <svg class="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path d="M5 15l7-7 7 7"/></svg>
-        </button>
-    </div>
-
-    <!-- SPA NAVIGATION ENGINE -->
-    <script>
-        function switchTab(tabId) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.add('hidden'));
-            
-            const targetView = document.getElementById('tab-' + tabId);
-            if (targetView) {
-                targetView.classList.remove('hidden');
-            }
-
-            const navIds = ['about', 'projects', 'services', 'news', 'careers', 'contact'];
-            navIds.forEach(id => {
-                const navLink = document.getElementById('nav-' + id);
-                if (navLink) {
-                    navLink.classList.remove('text-blue-600', 'font-bold');
-                }
-            });
-
-            const activeLink = document.getElementById('nav-' + tabId);
-            if (activeLink) {
-                activeLink.classList.add('text-blue-600', 'font-bold');
-            }
-
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-
-        function scrollToDetail(elementId) {
-            switchTab('projects');
-            setTimeout(() => {
-                const element = document.getElementById(elementId);
-                if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }, 100);
-        }
-
-        function selectPosition(positionName) {
-            const dropdown = document.getElementById('job-dropdown');
-            if (dropdown) {
-                dropdown.value = positionName;
-            }
-            const formContainer = document.getElementById('career-form-anchor');
-            if (formContainer) {
-                formContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }
-
-        function openNewsDetail() {
-            switchTab('news');
-            setTimeout(() => {
-                const deepBox = document.getElementById('deep-article-box');
-                if (deepBox) {
-                    deepBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            }, 100);
-        }
-
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            alert('Đã tiếp nhận yêu cầu gửi thông tin tư vấn thành công!');
-        }
-    </script>
 </body>
 </html>
